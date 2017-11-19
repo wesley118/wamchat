@@ -1,0 +1,11 @@
+<mat-list>
+  <mat-list-item *ngFor="let message of messages">
+    <span class="message" [class.sender]="message.username === 'wesley'">{{message.message}}</span>
+  </mat-list-item>
+</mat-list>
+<mat-form-field>
+  <input matInput placeholder="Send">
+</mat-form-field>
+<button mat-icon-button>
+  <i class="material-icons">check</i>
+</button>

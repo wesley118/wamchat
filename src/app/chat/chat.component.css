@@ -1,0 +1,11 @@
+.message{
+  background: #008e5c;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.sender{
+  background: #8e8e8e;
+  margin-right: 0;
+  margin-left: auto;
+}
