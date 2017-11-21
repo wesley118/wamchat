@@ -9,3 +9,12 @@
   margin-right: 0;
   margin-left: auto;
 }
+
+.input-text {
+  width: 100%;
+}
+
+.submit-btn {
+  float: right;
+  margin-top: -60px;
+}
