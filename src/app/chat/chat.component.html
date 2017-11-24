@@ -3,9 +3,9 @@
     <span class="message" [class.sender]="message.username === 'wesley'">{{message.message}}</span>
   </mat-list-item>
 </mat-list>
-<mat-form-field>
+<mat-form-field class="input-text">
   <input matInput placeholder="Send">
 </mat-form-field>
-<button mat-icon-button>
-  <i class="material-icons">check</i>
-</button>
+  <button mat-icon-button class="submit-btn">
+    <i class="material-icons">check</i>
+  </button>
