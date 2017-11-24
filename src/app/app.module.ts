@@ -9,12 +9,15 @@ import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
+import { DatahubComponent } from './datahub/datahub.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    DatahubComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { ChatComponent } from './chat/chat.component';
     MatFormFieldModule,
     MatButtonModule,
     MatListModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
