@@ -1,1 +1,10 @@
-<p id="message">{{message}}</p>
+<div>
+  <button (click)="getCounters()">click me</button>
+  <button (click)="printCounters()">click me</button>
+  <div *ngFor="let counter of counters">
+
+    <h3>{{counter.typeName}}</h3>:
+    <span>{{counter.count}}</span>
+
+  </div>
+</div>

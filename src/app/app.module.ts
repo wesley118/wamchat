@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { DatahubComponent } from './datahub/datahub.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { DataService } from './data.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { AppRoutingModule } from './/app-routing.module';
     MatListModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

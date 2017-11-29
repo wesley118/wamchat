@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { HubConnection } from '@aspnet/signalr-client';
 import { element } from 'protractor';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { Counter } from '../Counter';
+
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-datahub',
@@ -13,28 +18,17 @@ export class DatahubComponent implements OnInit {
   private _hubConnection: HubConnection;
   public async: any;
   public message = '';
-
-  constructor() {
+  counters: Counter[];
+  getCounters(): void {
+    this.dataService.getCounters().subscribe(c => this.counters = c);
+    console.log(JSON.stringify(this.counters));
   }
-
-  private updateMessage(): void {
-    const messageP = document.getElementById('message');
-    messageP.innerText = this.message;
+  printCounters(): void {
+    this.dataService.printC();
   }
-
+  constructor(private dataService: DataService) { }
   ngOnInit() {
-    this._hubConnection = new HubConnection('http://localhost:61812/DataHub');
-
-    this._hubConnection.on('UpdateList', (data: any) => {
-      this.message = data;
-    });
-
-    this._hubConnection.start()
-      .then(() => {
-        console.log('Hub connection started');
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
+    this.getCounters();
   }
 }
+
