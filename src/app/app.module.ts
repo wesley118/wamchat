@@ -13,13 +13,15 @@ import { DatahubComponent } from './datahub/datahub.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DataService } from './data.service';
 import { BtcExchangeService } from './btc-exchange.service';
+import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
-    DatahubComponent
+    DatahubComponent,
+    BtcMonitorComponent
   ],
   imports: [
     BrowserModule,

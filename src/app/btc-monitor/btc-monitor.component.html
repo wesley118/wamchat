@@ -1,0 +1,5 @@
+<div *ngFor="let exchange of exchanges">
+  <h1>{{exchange.name}}</h1>
+  <h2>{{exchange.currentPrice}}</h2>
+  <canvas id="chart{{exchange.name}}"></canvas>
+</div>
