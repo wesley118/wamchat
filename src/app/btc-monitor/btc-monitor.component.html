@@ -1,5 +1,18 @@
-<div *ngFor="let exchange of exchanges">
-  <h1>{{exchange.name}}</h1>
-  <h2>{{exchange.currentPrice}}</h2>
-  <canvas id="chart{{exchange.name}}"></canvas>
-</div>
+<mat-grid-list cols="6" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let exchange of exchanges">
+    <mat-card class="exchange-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{exchange.name}}
+        </mat-card-title>
+        <mat-card-subtitle>Current Price</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span>{{exchange.currentPrice}}{{exchange.baseCurrency}}</span>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button routerLink="/btcHistory/{{exchange.name}}">View History</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

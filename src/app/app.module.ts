@@ -6,6 +6,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxChartsModule } from '@swimlane/ngx-charts/release';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
@@ -14,6 +18,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DataService } from './data.service';
 import { BtcExchangeService } from './btc-exchange.service';
 import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
+import { BtcHistoryChartComponent } from './btc-history-chart/btc-history-chart.component';
+import { ChartTestComponent } from './chart-test/chart-test.component';
 
 
 @NgModule({
@@ -21,7 +27,9 @@ import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
     AppComponent,
     ChatComponent,
     DatahubComponent,
-    BtcMonitorComponent
+    BtcMonitorComponent,
+    BtcHistoryChartComponent,
+    ChartTestComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +40,10 @@ import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
     MatButtonModule,
     MatListModule,
     AppRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    HttpClientModule,
+    NgxChartsModule,
   ],
   providers: [DataService, BtcExchangeService],
   bootstrap: [AppComponent]

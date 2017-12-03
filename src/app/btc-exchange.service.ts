@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HubConnection } from '@aspnet/signalr-client';
-import { BtcPrice, BtcExchange } from './btcPrice';
+import { BtcPrice, BtcExchange, Exchange } from './btcPrice';
 import { of } from 'rxjs/observable/of';
 import { element } from 'protractor';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -11,6 +12,11 @@ import { Observable } from 'rxjs/Observable';
 export class BtcExchangeService {
   private _hubConnection: HubConnection;
   exchanges: Array<BtcExchange>;
+  getExchangeHistory(name): Observable<Exchange> {
+    return this.http.get<Exchange>(`http://localhost:61812/api/btcExchange/${name}`).pipe(
+      tap(exchange => console.log(`exchangeFetched`))
+    );
+  }
   getExchanges(): Observable<BtcExchange[]> {
     return of(this.exchanges);
   }
@@ -27,6 +33,7 @@ export class BtcExchangeService {
     price.price = data.price;
     price.dateTime = data.date;
     e.currentPrice = data.price;
+    e.baseCurrency = data.baseCurrency;
     e.prices.push(price);
   }
   startHub(): void {
@@ -40,7 +47,7 @@ export class BtcExchangeService {
       // log.verbose('hubConnected')
     }).catch();
   }
-  constructor() {
+  constructor(private http: HttpClient) {
     this.startHub();
   }
 
