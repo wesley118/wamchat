@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,18 +10,18 @@ import { window } from 'rxjs/operators/window';
 import { multi } from '../chart-test/data';
 
 
-
 @Component({
   selector: 'app-btc-history-chart',
   templateUrl: './btc-history-chart.component.html',
   styleUrls: ['./btc-history-chart.component.css']
 })
 export class BtcHistoryChartComponent implements AfterViewInit {
+  @Input() name: string;
   exchange: Exchange;
   histChart: Chart;
   multi: any[];
 
-  view: any[] = [1920, 800];
+  view: undefined;
 
   // options
   showXAxis = true;
@@ -36,9 +36,11 @@ export class BtcHistoryChartComponent implements AfterViewInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
   getExchange(): void {
-    const name = this.route.snapshot.paramMap.get('name');
-    console.log(`name: ${name}`);
-    this.btcService.getExchangeHistory(name).toPromise().then(e => {
+    if (this.name === null || this.name === undefined) {
+      this.name = this.route.snapshot.paramMap.get('name');
+    }
+    console.log(`name: ${this.name}`);
+    this.btcService.getExchangeHistory(this.name).toPromise().then(e => {
       this.exchange = e;
       // console.log(`exchange: ${JSON.stringify(this.exchange)}`);
       this.setUpChart();

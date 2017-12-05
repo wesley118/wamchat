@@ -10,6 +10,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts/release';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
@@ -20,6 +22,7 @@ import { BtcExchangeService } from './btc-exchange.service';
 import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
 import { BtcHistoryChartComponent } from './btc-history-chart/btc-history-chart.component';
 import { ChartTestComponent } from './chart-test/chart-test.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { ChartTestComponent } from './chart-test/chart-test.component';
     DatahubComponent,
     BtcMonitorComponent,
     BtcHistoryChartComponent,
-    ChartTestComponent
+    ChartTestComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { ChartTestComponent } from './chart-test/chart-test.component';
     MatCardModule,
     HttpClientModule,
     NgxChartsModule,
+    MatExpansionModule,
+    MatMenuModule,
   ],
   providers: [DataService, BtcExchangeService],
   bootstrap: [AppComponent]
