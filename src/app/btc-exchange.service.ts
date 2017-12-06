@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 export class BtcExchangeService {
   private _hubConnection: HubConnection;
   exchanges: Array<BtcExchange>;
+  obsExchanges: Observable<object>;
   getExchangeHistory(name): Observable<Exchange> {
     return this.http.get<Exchange>(`http://localhost:61812/api/btcExchange/${name}`).pipe(
       tap(exchange => console.log(`exchangeFetched`))
@@ -47,8 +48,17 @@ export class BtcExchangeService {
       // log.verbose('hubConnected')
     }).catch();
   }
+  private getInitialExchanges(): void {
+
+    this.obsExchanges = this.http.get<Exchange>('http://localhost:61812/api/btcExchange').pipe(
+      tap(exc => console.log(JSON.stringify(exc)), err => {
+        this.startHub();
+        console.log(JSON.stringify(err));
+      }));
+
+  }
   constructor(private http: HttpClient) {
-    this.startHub();
+    this.getInitialExchanges();
   }
 
 }
