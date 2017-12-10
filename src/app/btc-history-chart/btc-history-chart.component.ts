@@ -5,9 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { BtcPrice, Exchange } from '../btcPrice';
 import { BtcExchangeService } from '../btc-exchange.service';
-import { Chart } from 'chart.js';
 import { window } from 'rxjs/operators/window';
-import { multi } from '../chart-test/data';
 
 
 @Component({
@@ -18,7 +16,6 @@ import { multi } from '../chart-test/data';
 export class BtcHistoryChartComponent implements AfterViewInit {
   @Input() name: string;
   exchange: Exchange;
-  histChart: Chart;
   multi: any[];
 
   view: undefined;
@@ -30,6 +27,8 @@ export class BtcHistoryChartComponent implements AfterViewInit {
   showLegend = false;
   showXAxisLabel = false;
   showYAxisLabel = false;
+  xAxisLabel = 'Price';
+  yAxisLabel = 'Date';
   autoScale = true;
 
   colorScheme = {
@@ -47,6 +46,9 @@ export class BtcHistoryChartComponent implements AfterViewInit {
     }).catch(err => {
       console.log(`caughtError: ${err}`);
     });
+  }
+  onSelect(event): void {
+
   }
   setUpChart(): void {
     const name = this.exchange.name;

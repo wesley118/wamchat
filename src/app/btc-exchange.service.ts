@@ -7,6 +7,8 @@ import { element } from 'protractor';
 import { forEach } from '@angular/router/src/utils/collection';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
+import { TransportType } from '@aspnet/signalr-client/dist/src/Transports';
+import { ProtocolType } from '@aspnet/signalr-client/dist/src/IHubProtocol';
 
 @Injectable()
 export class BtcExchangeService {
@@ -14,7 +16,7 @@ export class BtcExchangeService {
   exchanges: Array<BtcExchange>;
   obsExchanges: Observable<object>;
   getExchangeHistory(name): Observable<Exchange> {
-    return this.http.get<Exchange>(`http://localhost:61812/api/btcExchange/${name}`).pipe(
+    return this.http.get<Exchange>(`http://api.wesleymayberry.com/api/btcExchange/${name}`).pipe(
       tap(exchange => console.log(`exchangeFetched`))
     );
   }
@@ -39,7 +41,7 @@ export class BtcExchangeService {
   }
   startHub(): void {
     this.exchanges = new Array<BtcExchange>();
-    this._hubConnection = new HubConnection('http://localhost:61812/btcExchange');
+    this._hubConnection = new HubConnection('http://api.wesleymayberry.com/btcExchange', { transport: TransportType.WebSockets });
     this._hubConnection.on('BtcUpdate', (data: any) => {
       // console.log(`data: ${data}`);
       this.updateExchanges(data);
@@ -50,15 +52,15 @@ export class BtcExchangeService {
   }
   private getInitialExchanges(): void {
 
-    this.obsExchanges = this.http.get<Exchange>('http://localhost:61812/api/btcExchange').pipe(
+    this.obsExchanges = this.http.get<Exchange>('http://api.wesleymayberry.com/api/btcExchange').pipe(
       tap(exc => console.log(JSON.stringify(exc)), err => {
-        this.startHub();
+
         console.log(JSON.stringify(err));
       }));
 
   }
   constructor(private http: HttpClient) {
-    this.getInitialExchanges();
+    this.startHub();
   }
 
 }

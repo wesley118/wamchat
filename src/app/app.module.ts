@@ -21,7 +21,6 @@ import { DataService } from './data.service';
 import { BtcExchangeService } from './btc-exchange.service';
 import { BtcMonitorComponent } from './btc-monitor/btc-monitor.component';
 import { BtcHistoryChartComponent } from './btc-history-chart/btc-history-chart.component';
-import { ChartTestComponent } from './chart-test/chart-test.component';
 import { MenuComponent } from './menu/menu.component';
 
 
@@ -32,7 +31,6 @@ import { MenuComponent } from './menu/menu.component';
     DatahubComponent,
     BtcMonitorComponent,
     BtcHistoryChartComponent,
-    ChartTestComponent,
     MenuComponent
   ],
   imports: [

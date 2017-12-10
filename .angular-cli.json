@@ -19,12 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss",
-        "./src/app/custom.scss"
+        "styles.css",
+        "./app/custom.scss"
       ],
-      "scripts": [
-        "./node_modules/chart.js/dist/Chart.min.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -57,7 +55,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "component": {}
   }
 }
